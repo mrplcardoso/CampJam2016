@@ -11,7 +11,6 @@ public class BackOff : AbstractBehaviour
         mind.transform.position) < (mind.mBody.minActionRay + 5))
     {
       mind.mBody.Moviment((mind.transform.position - mind.enemy.transform.position).normalized);
-      mind.mBody.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
     else
       mind.mBody.afterAttack = false;

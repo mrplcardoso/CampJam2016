@@ -15,8 +15,9 @@ public class Attack : AbstractBehaviour
   {
     if (mind.enemy != null)
     {
-      if (Vector3.Distance(mind.enemy.transform.position,
-        mind.transform.position) <= mind.mBody.maxActionRay)
+      if (AbstractCharacter.ApproximationPrecision(
+        Vector3.Distance(mind.enemy.transform.position,
+        mind.transform.position), mind.mBody.maxActionRay, 0.1f))
       {
         if (i <= 0)
         {

@@ -27,8 +27,8 @@ public class SeekEnemy : AbstractBehaviour
         if (Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
           < mind.mBody.minActionRay)
         {
-          if (Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
-          > mind.mBody.maxActionRay)
+          /*if (Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
+          > mind.mBody.maxActionRay)*/
           {
             return true;
           }
