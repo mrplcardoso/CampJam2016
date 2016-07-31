@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
   public NodeObject[,] grid;
   public NodeObject tilePrefab;
+  public AgentCharacter[] horses;
+  public NodeObject[] targetNodes;
   public Vector3 startPosition, endPosition;
   public float tileSize;
   public float gridSize;
@@ -15,12 +17,33 @@ public class GameManager : MonoBehaviour
   {
     grid = GetComponent<CreateGrid>().GenerateGrid();
     GetComponent<FindPath>().grid = grid;
+    MatchTargetNodes();
   }
 
   // Update is called once per frame
   void Update()
   {
     StartCoroutine("DrawGrid");
+    if(Input.GetKeyDown(KeyCode.Space))
+    {
+      foreach (AgentCharacter a in horses)
+        a.canMove = true;
+    }
+  }
+
+  void MatchTargetNodes()
+  {
+    for(int i = 0; i < targetNodes.Length; ++i)
+    {
+      //horses[i].targetNode = TileObject.MatchNode(targetNodes[i], grid);
+      horses[i].StartAgent();
+      horses[i].Path(TileObject.MatchNode(targetNodes[i], grid));
+      targetNodes[i].transform.position = new Vector3(
+        horses[i].targetNode.transform.position.x,
+        targetNodes[i].transform.position.y,
+        horses[i].targetNode.transform.position.z);
+      targetNodes[i].gridPosition = horses[i].targetNode.gridPosition;
+    }
   }
 
   IEnumerator DrawGrid()
