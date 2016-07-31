@@ -15,23 +15,18 @@ public class SeekEnemy : AbstractBehaviour
 
       if (mind.CompareTag("Player"))
       {
-        if (mind.mBody.motivation > 0)
+        if (mind.mBody.audioMotivation > 0)
         {
-          Debug.Log("Seek");
           return true;
         }
       }
 
       if (mind.CompareTag("IA"))
       {
-        if (Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
-          < mind.mBody.minActionRay)
+        if ((Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
+          < mind.mBody.minActionRay) || mind.mBody.temperMotivation > 0)
         {
-          /*if (Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
-          > mind.mBody.maxActionRay)*/
-          {
-            return true;
-          }
+          return true;
         }
       }
     }

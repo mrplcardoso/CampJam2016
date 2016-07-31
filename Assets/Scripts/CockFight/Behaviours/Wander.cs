@@ -12,7 +12,6 @@ public class Wander : AbstractBehaviour
     }
 
     mind.mBody.Moviment(mind.mBody.moveDirection);
-    //Debug.Log("rodando");
   }
 
   public override bool Think()

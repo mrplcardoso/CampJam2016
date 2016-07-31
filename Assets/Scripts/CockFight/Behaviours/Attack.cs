@@ -8,7 +8,6 @@ public class Attack : AbstractBehaviour
   public override void Act()
   {
     mind.mBody.afterAttack = true;
-    Debug.Log("Attack");
   }
 
   public override bool Think()

@@ -7,7 +7,8 @@ public class AbstractCharacter : MonoBehaviour
   public Transform minLimit, maxLimit;
   public float maxActionRay, minActionRay;
   public float mVelocity;
-  public float motivation = 0;
+  public float audioMotivation = 0, temperMotivation = 0, lightMotivation = 0;
+  public float life = 100;
   public bool afterAttack = false;
 
   public void Moviment(Vector3 direction)
@@ -25,9 +26,14 @@ public class AbstractCharacter : MonoBehaviour
       Mathf.Clamp(transform.position.z, minLimit.position.z + 0.1f, maxLimit.position.z - 0.1f));
   }
 
-  public void ChangeMotivation(float incValue = -0.1f)
+  public void ChangeAudioMotivation(float incValue = -0.1f)
   {
-    motivation += incValue;
+    audioMotivation += incValue;
+  }
+
+  public void ChangeTemperMotivation(float incValue = -0.01f)
+  {
+    temperMotivation += incValue;
   }
 
   public static bool ApproximationPrecision(float a, float b, float tolerance)

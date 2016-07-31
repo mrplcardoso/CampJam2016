@@ -14,7 +14,7 @@ public class BackOff : AbstractBehaviour
     }
     else
       mind.mBody.afterAttack = false;
-    Debug.Log("BackOff");
+    //Debug.Log("BackOff");
   }
 
   public override bool Think()
