@@ -26,7 +26,7 @@ public class AbstractCharacter : MonoBehaviour
       Mathf.Clamp(transform.position.z, minLimit.position.z + 0.1f, maxLimit.position.z - 0.1f));
   }
 
-  public void ChangeAudioMotivation(float incValue = -0.1f)
+  public void ChangeAudioMotivation(float incValue = -0.25f)
   {
     audioMotivation += incValue;
   }

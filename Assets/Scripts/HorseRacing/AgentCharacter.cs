@@ -5,28 +5,25 @@ using System.Collections.Generic;
 public class AgentCharacter : TileObject
 {
   public FindPath finder;
-  public List<NodeObject> path;
-  public NodeObject actualNode, targetNode;
+  public List<GameObject> path;
+  public GameObject pathHolder;
+  public GameObject actualNode, targetNode;
   public int cont;
   public bool canMove;
 
   // Use this for initialization
   public void StartAgent()
   {
+    path = new List<GameObject>();
+    foreach(Transform t in pathHolder.transform)
+    {
+      path.Add(t.gameObject);
+      t.GetComponent<MeshRenderer>().enabled = false;
+    }
+
     mVelocity = 2;
     audioMotivation = 1;
-    tag = "IA";
-    actualNode = MatchNode(this, finder.grid);
-    gridPosition = actualNode.gridPosition;
-    transform.position = new Vector3(actualNode.transform.position.x,
-      1, actualNode.transform.position.z);
-  }
-
-  public void Path(NodeObject target = null)
-  {
-    if(target != null)
-      targetNode = target;
-    path = finder.Search(actualNode, targetNode);
+    //tag = "IA";
   }
 
   // Update is called once per frame
@@ -46,7 +43,6 @@ public class AgentCharacter : TileObject
       if (transform.position == path[cont].transform.position)
       {
         actualNode = path[cont];
-        gridPosition = path[cont].gridPosition;
         cont++;
         if (cont >= path.Count)
           canMove = false;
