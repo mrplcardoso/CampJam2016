@@ -22,6 +22,7 @@ public class SelectPlayer : MonoBehaviour {
 
     void loadScene()
     {
+        
         Application.LoadLevel(level);
     }
 }
