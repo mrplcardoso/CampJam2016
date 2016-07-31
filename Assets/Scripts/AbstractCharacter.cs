@@ -10,6 +10,7 @@ public class AbstractCharacter : MonoBehaviour
   public float audioMotivation = 0, temperMotivation = 0, lightMotivation = 0;
   public float life = 100;
   public bool afterAttack = false;
+  public Animator anim;
 
   public void Moviment(Vector3 direction)
   {
@@ -24,6 +25,8 @@ public class AbstractCharacter : MonoBehaviour
       Mathf.Clamp(transform.position.x, minLimit.position.x + 0.1f, maxLimit.position.x - 0.1f),
       transform.position.y,
       Mathf.Clamp(transform.position.z, minLimit.position.z + 0.1f, maxLimit.position.z - 0.1f));
+
+    transform.rotation = Quaternion.LookRotation(-direction); ;
   }
 
   public void ChangeAudioMotivation(float incValue = -0.25f)

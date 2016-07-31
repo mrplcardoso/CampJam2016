@@ -21,11 +21,13 @@ public class Attack : AbstractBehaviour
         if (i <= 0)
         {
           i = 1;
+          mind.mBody.anim.SetBool("attack", true);
           return true;
         }
       }
     }
     i -= Time.deltaTime;
+    mind.mBody.anim.SetBool("attack", false);
     return false;
   }
 }
