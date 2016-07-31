@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
   public AgentCharacter[] horses;
   public NodeObject[] targetNodes;
   public Vector3 startPosition, endPosition;
+  public MicrophoneListener mic;
   public float tileSize;
   public float gridSize;
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     grid = GetComponent<CreateGrid>().GenerateGrid();
     GetComponent<FindPath>().grid = grid;
     MatchTargetNodes();
+    horses[Player.numberPlayer].tag = "Player";
+    horses[Player.numberPlayer].audioMotivation = 0;
   }
 
   // Update is called once per frame
@@ -29,13 +32,54 @@ public class GameManager : MonoBehaviour
       foreach (AgentCharacter a in horses)
         a.canMove = true;
     }
+    StartCoroutine("CheckMotivation");
+  }
+
+  IEnumerator CheckMotivation()
+  {
+    /*Em loop diminui a motivação do bixo
+    enquanto for maior que zero, ele ira atacar o inimigo
+    Sempre que houver input, ele aumenta a motivação
+    */
+
+    foreach(AgentCharacter a in horses)
+    {
+      if (a.gameObject.CompareTag("Player"))
+      {
+        if (mic != null)
+        {
+          if (a.audioMotivation >= 0)
+          {
+            a.ChangeAudioMotivation();
+          }
+          if (AbstractCharacter.ApproximationPrecision(mic.MicInput * 100, 1, 0.1f))
+          {
+            a.ChangeAudioMotivation(1f);
+          }
+        }
+      }
+    }
+
+
+    /*if (gameObject.CompareTag("IA"))
+    {
+      if (mBody.temperMotivation >= 0)
+      {
+        mBody.ChangeTemperMotivation();
+      }
+      if (Input.GetKeyDown(KeyCode.Space))
+      {
+        mBody.ChangeTemperMotivation(5);
+      }
+    }
+    */
+    yield return null;
   }
 
   void MatchTargetNodes()
   {
     for(int i = 0; i < targetNodes.Length; ++i)
     {
-      //horses[i].targetNode = TileObject.MatchNode(targetNodes[i], grid);
       horses[i].StartAgent();
       horses[i].Path(TileObject.MatchNode(targetNodes[i], grid));
       targetNodes[i].transform.position = new Vector3(

@@ -13,6 +13,9 @@ public class AgentCharacter : TileObject
   // Use this for initialization
   public void StartAgent()
   {
+    mVelocity = 2;
+    audioMotivation = 1;
+    tag = "IA";
     actualNode = MatchNode(this, finder.grid);
     gridPosition = actualNode.gridPosition;
     transform.position = new Vector3(actualNode.transform.position.x,
@@ -39,7 +42,7 @@ public class AgentCharacter : TileObject
     {
       transform.position =
         Vector3.MoveTowards(transform.position,
-        path[cont].transform.position, 10 * Time.deltaTime);
+        path[cont].transform.position, (audioMotivation * mVelocity) * Time.deltaTime);
       if (transform.position == path[cont].transform.position)
       {
         actualNode = path[cont];

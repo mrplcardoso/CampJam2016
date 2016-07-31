@@ -45,7 +45,7 @@ public class CreateGrid : MonoBehaviour
             {
               grid[i, j].transform.position = new Vector3
                 (grid[i, j].transform.position.x,
-                 h.point.y + 0.5f,
+                 h.point.y,
                  grid[i, j].transform.position.z);
               grid[i, j].walkable = false;
             }
@@ -54,7 +54,7 @@ public class CreateGrid : MonoBehaviour
             {
               grid[i, j].transform.position = new Vector3
                 (grid[i, j].transform.position.x,
-                 h.point.y + 0.5f,
+                 h.point.y,
                  grid[i, j].transform.position.z);
               grid[i, j].walkable = true;
             }
