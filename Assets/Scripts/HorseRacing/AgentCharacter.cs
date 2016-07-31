@@ -22,7 +22,7 @@ public class AgentCharacter : TileObject
     }
 
     mVelocity = 2;
-    audioMotivation = 1;
+    audioMotivation = Random.Range(4f,6f);
     //tag = "IA";
   }
 
@@ -40,6 +40,8 @@ public class AgentCharacter : TileObject
       transform.position =
         Vector3.MoveTowards(transform.position,
         path[cont].transform.position, (audioMotivation * mVelocity) * Time.deltaTime);
+            if (actualNode)
+                transform.LookAt(actualNode.transform);
       if (transform.position == path[cont].transform.position)
       {
         actualNode = path[cont];
