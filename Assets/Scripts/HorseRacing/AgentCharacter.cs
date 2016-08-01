@@ -22,7 +22,7 @@ public class AgentCharacter : TileObject
     }
 
     mVelocity = 2;
-    audioMotivation = Random.Range(4f,6f);
+    audioMotivation = Random.Range(3f, 5f);
     //tag = "IA";
   }
 

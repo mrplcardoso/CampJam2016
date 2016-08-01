@@ -32,6 +32,8 @@ public class AbstractCharacter : MonoBehaviour
   public void ChangeAudioMotivation(float incValue = -0.25f)
   {
     audioMotivation += incValue;
+    if (audioMotivation > 6)
+      audioMotivation = 6;
   }
 
   public void ChangeTemperMotivation(float incValue = -0.01f)

@@ -24,7 +24,7 @@ public class SeekEnemy : AbstractBehaviour
       if (mind.CompareTag("IA"))
       {
         if ((Vector3.Distance(mind.enemy.transform.position, mind.transform.position)
-          < mind.mBody.minActionRay) || mind.mBody.temperMotivation > 0)
+          < mind.mBody.minActionRay) || mind.mBody.audioMotivation > 0)
         {
           return true;
         }

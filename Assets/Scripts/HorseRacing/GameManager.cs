@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
         a.canMove = true;
     }
     StartCoroutine("CheckMotivation");
+    if (Input.GetKeyDown(KeyCode.Escape))
+      Application.LoadLevel("telaInical");
   }
 
   IEnumerator CheckMotivation()

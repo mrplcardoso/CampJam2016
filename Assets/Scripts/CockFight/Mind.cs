@@ -34,6 +34,8 @@ public class Mind : MonoBehaviour
     */
     if (gameObject.CompareTag("Player"))
     {
+      if (Input.GetKeyDown(KeyCode.Escape))
+        Application.LoadLevel("telaInical");
       if (mic != null)
       {
         if (mBody.audioMotivation >= 0)
@@ -44,18 +46,6 @@ public class Mind : MonoBehaviour
         {
           mBody.ChangeAudioMotivation(5);
         }
-      }
-    }
-
-    if(gameObject.CompareTag("IA"))
-    {
-      if(mBody.temperMotivation >= 0)
-      {
-        mBody.ChangeTemperMotivation();
-      }
-      if(Input.GetKeyDown(KeyCode.Space))
-      {
-        mBody.ChangeTemperMotivation(5);
       }
     }
 
